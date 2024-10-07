@@ -1,15 +1,11 @@
 package twitter;
 
 import java.time.Instant; // Import for Instant
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet; // Import for HashSet
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher; // Import for Matcher
 import java.util.regex.Pattern; // Import for Pattern
-import java.util.stream.Collectors;
 import java.util.NoSuchElementException; // Import for exception
 
 public class Extract {
@@ -19,6 +15,22 @@ public class Extract {
      * @param tweets a list of tweets
      * @return the timespan from the earliest to the latest tweet
      */
+    public static Timespan getTimespan(List<Tweet> tweets) {
+        if (tweets.isEmpty()) {
+            // Handle empty list, decide to throw an exception or return a default timespan
+            throw new IllegalArgumentException("Tweet list cannot be empty");
+        }
+        Instant start = tweets.stream()
+                              .map(Tweet::getTimestamp)
+                              .min(Instant::compareTo)
+                              .orElseThrow(() -> new NoSuchElementException("No start time found"));
+
+        Instant end = tweets.stream()
+                            .map(Tweet::getTimestamp)
+                            .max(Instant::compareTo)
+                            .orElseThrow(() -> new NoSuchElementException("No end time found"));
+
+        return new Timespan(start, end); }
 //	alternative implementation 1
 //	public static Timespan getTimespan(List<Tweet> tweets) {
 //	    List<Tweet> sortedTweets = new ArrayList<>(tweets);

@@ -19,10 +19,26 @@ public class FilterTest {
     private static final Instant d4 = Instant.parse("2016-02-17T12:00:00Z");
 
     private static final Tweet tweet1 = new Tweet(1, "alyssa", "is it reasonable to talk about rivest so much?", d1);
+// 	tweet1 modified to cause failure for containing function
+//  private static final Tweet tweet1 = new Tweet(1, "alyssa", "", d1);
+  
     private static final Tweet tweet2 = new Tweet(2, "bbitdiddle", "rivest talk in 30 minutes #hype", d2);
     private static final Tweet tweet3 = new Tweet(3, "alyssa", "another tweet by alyssa", d3);
     private static final Tweet tweet4 = new Tweet(4, "bob", "this tweet is by bob", d4);
     
+//additional test case 1
+    @Test
+    public void testWrittenBySingleTweetMultipleUsers() {
+        List<Tweet> writtenBy = Filter.writtenBy(Arrays.asList(tweet1, tweet3), "bob");
+        assertTrue("expected empty list", writtenBy.isEmpty());
+    }
+// additional test case 2
+    @Test
+    public void testWrittenByMultipleUsersSameTweet() {
+        List<Tweet> writtenBy = Filter.writtenBy(Arrays.asList(tweet1, tweet2), "alyssa");
+        assertEquals("expected one tweet", 1, writtenBy.size());
+        assertTrue("expected list to contain tweet1", writtenBy.contains(tweet1));
+    }
 
 
     // Test cases for writtenBy

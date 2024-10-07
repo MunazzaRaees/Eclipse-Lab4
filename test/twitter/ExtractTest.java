@@ -194,7 +194,8 @@ public class ExtractTest {
 //        assertTrue("expected mentioned user bob", mentionedUsers.contains("bob"));
 //        assertTrue("expected mentioned user charlie_123", mentionedUsers.contains("charlie_123"));
 //    }
-    @Test    public void testGetMentionedUsersSingleMention() {
+    @Test    
+    public void testGetMentionedUsersSingleMention() {
         Tweet tweetWithMention = new Tweet(3, "bbitdiddle", "Hello @alice!", d1);
         Set<String> mentionedUsers = Extract.getMentionedUsers(Arrays.asList(tweetWithMention));
         

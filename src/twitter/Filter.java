@@ -31,18 +31,18 @@ public class Filter {
         return result;
     }
 
-//    public static List<Tweet> containing(List<Tweet> tweets, List<String> words) {
-//        List<Tweet> result = new ArrayList<>();
-//        for (Tweet tweet : tweets) {
-//            for (String word : words) {
-//                if (tweet.getText().toLowerCase().contains(word.toLowerCase())) {
-//                    result.add(tweet);
-//                    break; // Found a matching word, no need to check further
-//                }
-//            }
-//        }
-//        return result;
-//    }
+    public static List<Tweet> containing(List<Tweet> tweets, List<String> words) {
+        List<Tweet> result = new ArrayList<>();
+        for (Tweet tweet : tweets) {
+            for (String word : words) {
+                if (tweet.getText().toLowerCase().contains(word.toLowerCase())) {
+                    result.add(tweet);
+                    break; // Found a matching word, no need to check further
+                }
+            }
+        }
+        return result;
+    }
 //    alterative imp 1
 //    public static List<Tweet> containing(List<Tweet> tweets, List<String> words) {
 //        return tweets.stream()
@@ -73,20 +73,20 @@ public class Filter {
 //    }
 
 //  alterative imp 3
-    public static List<Tweet> containing(List<Tweet> tweets, List<String> words) {
-        Set<String> uniqueWords = new HashSet<>(words);
-        List<Tweet> result = new ArrayList<>();
-        
-        for (Tweet tweet : tweets) {
-            for (String word : uniqueWords) {
-                if (tweet.getText().toLowerCase().contains(word.toLowerCase())) {
-                    result.add(tweet);
-                    break; // Found a matching word, no need to check further
-                }
-            }
-        }
-        return result;
-    }
+//    public static List<Tweet> containing(List<Tweet> tweets, List<String> words) {
+//        Set<String> uniqueWords = new HashSet<>(words);
+//        List<Tweet> result = new ArrayList<>();
+//        
+//        for (Tweet tweet : tweets) {
+//            for (String word : uniqueWords) {
+//                if (tweet.getText().toLowerCase().contains(word.toLowerCase())) {
+//                    result.add(tweet);
+//                    break; // Found a matching word, no need to check further
+//                }
+//            }
+//        }
+//        return result;
+//    }
 
 
 }
